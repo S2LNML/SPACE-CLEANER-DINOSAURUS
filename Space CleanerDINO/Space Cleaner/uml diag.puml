@@ -1,0 +1,52 @@
+@startuml
+class com.mygdx.game.objects.TrashObject {
+~ int livesLeft
+- {static} int paddingHorizontal
++ boolean isInFrame()
++ void hit()
++ boolean isAlive()
+}
+
+
+class com.mygdx.game.objects.BulletObject {
+~ boolean wasHit
++ boolean hasToBeDestroyed()
++ void hit()
+}
+
+
+class com.mygdx.game.objects.ShipObject {
+~ int livesLeft
+~ long lastShotTime
+- void putInFrame()
++ void draw(SpriteBatch)
++ void move(Vector3)
++ boolean needToShoot()
++ void hit()
++ boolean isAlive()
++ int getliveLeft()
+}
+
+
+class com.mygdx.game.objects.GameObject {
++ short cBits
++ int width
++ Body body
+~ Texture texture
+- Body createBody(float,float,World)
++ int getX()
++ int getY()
++ void setX(int)
++ void setY(int)
++ void draw(SpriteBatch)
++ void dispose()
++ void hit()
+}
+
+
+
+
+com.mygdx.game.objects.GameObject <|-- com.mygdx.game.objects.TrashObject
+com.mygdx.game.objects.GameObject <|-- com.mygdx.game.objects.BulletObject
+com.mygdx.game.objects.GameObject <|-- com.mygdx.game.objects.ShipObject
+@enduml
